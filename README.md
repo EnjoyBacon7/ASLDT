@@ -6,13 +6,14 @@ it has been designed to translate ASL into text simply and efficiently, requirin
 
 ### Prerequisites
 If you program a lot, telling you that you need certain libraries is something that you are used to. But if you are not a huge fan of the discipline, do not worry! We will tell you how to do it!
-For the good functioning of the project, you will need to have these libraries:
+At the beginning of the project, you can see these libraries:
 ```python
 import cv2
 import tensorflow
-Give libraries name
+import libraries_name
 ```
 If you are a programming pro, you can go automatically to the Installing section. For our brave beginners, we will teach you how to install the different libraries.
+First,
 
 ### Installing
 
@@ -36,33 +37,16 @@ If not, try to see if every libraries are installed with success, and try again.
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+To test the translator, the only thing you have to do is to run the program! If you did the previous step without problem, everything will work!
 
 ## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
 * [TensorFlow](https://www.tensorflow.org/) - The machine learning
 * [OpenCV](https://opencv.org/) - The eyes of the program
 * [JSP]() - Used to generate something
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
@@ -72,8 +56,6 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 * **Camille Bizeul** - *Team leader* - [PseudoGitHub](https://github.com/PseudoGitHub)
 * **Anaïs dela Rivière** - *something* - [PseudoGitHub](https://github.com/PseudoGitHub)
 * **Gilles Ollivier** - *Potatoe* - [PseudoGitHub](https://github.com/PseudoGitHub)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
