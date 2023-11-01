@@ -29,9 +29,10 @@ function App() {
       <div className="container">
         <Title />
         <Update_cmpnt
-          title="This is an example Card"
-          body="There are many examples in the world. Things that go well, things that don't. It's quite amazing, truthfully"
-          date="12/12/2020"
+          title="Project Proposal Submission!"
+          body="ASLDT now has an official project proposal! (Link below) It goes into detail about the project and what we plan to do with it. It also has a timeline of when we plan to do things. Check it out! While we wait for the proposal to be approved, we will be working on the website and learning TensorFlow."
+          date="30/10/2023"
+          downloadableContent={"Project proposal - Redacted.pdf"}
         />
       </div>
     </div>
