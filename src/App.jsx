@@ -1,34 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+
+import Title from './Title'
+import Update_cmpnt from './Update_cmpnt'
+import Navbar from './Navbar'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
+
+  // Set the theme to system theme
+  const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  useEffect(() => {
+    darkModeMediaQuery.matches ? setTheme('dark') : setTheme('light')
+  }, [])
+  darkModeMediaQuery.addListener(e => {
+    darkModeMediaQuery.matches ? setTheme('dark') : setTheme('light')
+  });
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', theme)
+    // localStorage only used to avoid FOUC (flash of unstyled content)
+    localStorage.setItem('theme', theme)
+  }, [theme])
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <Navbar theme={theme} />
+      <div className="container">
+        <Title />
+        <Update_cmpnt
+          title="This is an example Card"
+          body="There are many examples in the world. Things that go well, things that don't. It's quite amazing, truthfully"
+          date="12/12/2020"
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
