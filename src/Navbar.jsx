@@ -1,3 +1,6 @@
+import github_dark from './assets/github-dark.svg'
+import github_light from './assets/github-light.svg'
+
 function Navbar({theme}) {
 
     // Set the icon theme to the opposite of the current theme
@@ -7,14 +10,16 @@ function Navbar({theme}) {
     } else if (theme == 'light') {
         icon_theme = "dark"
     }
+    var gh_icon;
 
+    icon_theme = theme == 'dark' ? gh_icon = github_light : gh_icon = github_dark
 
     
 
     return (
         <div className="d-flex justify-content-end m-2 fixed-top">
             <a className={`btn btn-${theme}`} href="https://github.com/EnjoyBacon7/ASLDT">                
-            <img src={`src/assets/github-${icon_theme}.svg`} alt="github" width="30" height="30" />
+            <img src={gh_icon} alt="github" width="30" height="30" />
             </a>
         </div>
     )
