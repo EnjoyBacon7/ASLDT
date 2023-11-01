@@ -53,7 +53,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-* **Camille Bizeul** - *Team leader* - [PseudoGitHub](https://github.com/PseudoGitHub)
+* **EnjoyBacon7** - *Team leader* - [PseudoGitHub](https://github.com/PseudoGitHub)
 * **Anaïs dela Rivière** - *something* - [PseudoGitHub](https://github.com/PseudoGitHub)
 * **Gilles Ollivier** - *Potatoe* - [PseudoGitHub](https://github.com/PseudoGitHub)
 
