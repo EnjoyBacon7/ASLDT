@@ -1,11 +1,13 @@
 import download_light from './assets/download-light.svg'
 import download_dark from './assets/download-dark.svg'
 
+import { ThemeContext } from './ThemeProvider'
+
+import React, {useContext} from 'react'
+
 function Update_cmpnt({ title, body, date, downloadableContent}) {
     
-    console.log(`./content/${downloadableContent[0]}`)
-    
-    const theme = localStorage.getItem('theme')
+    const { theme } = useContext(ThemeContext)
     var download_icon = theme == 'dark' ? download_light : download_dark
 
     return (
@@ -23,7 +25,6 @@ function Update_cmpnt({ title, body, date, downloadableContent}) {
                         <img src={download_icon} alt="download" width="30" height="30" />
                         <div>{downloadableContent} </div>   
                     </a>
-                    
                 </div>
             </div>
         </div>

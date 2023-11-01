@@ -1,28 +1,21 @@
 import github_dark from './assets/github-dark.svg'
 import github_light from './assets/github-light.svg'
 
+import { ThemeContext } from './ThemeProvider';
 
-function Navbar({ theme }) {
+import React, { useContext } from 'react'
 
-    // Set the icon theme to the opposite of the current theme
-    var icon_theme;
-    if (theme == 'dark') {
-        icon_theme = "light"
-    } else if (theme == 'light') {
-        icon_theme = "dark"
-    }
-    var gh_icon;
+function Navbar() {
 
-    icon_theme = theme == 'dark' ? gh_icon = github_light : gh_icon = github_dark
-
-
+    const { theme } = useContext(ThemeContext)
+    var gh_icon = theme == 'dark' ? github_light : github_dark
 
     return (
         <div className='fixed-top d-flex justify-content-between align-items-center container'>
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="https://enjoybacon7.github.io/ASLDT/">Progress Updates</a></li>
+                <ol className="breadcrumb m-0">
+                    <li className="breadcrumb-item">Home</li>
+                    <li className="breadcrumb-item active" aria-current="page"><a href="https://enjoybacon7.github.io/ASLDT/">Progress Updates</a></li>
                 </ol>
             </nav>
             <div>

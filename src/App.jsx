@@ -4,28 +4,13 @@ import { useEffect } from 'react'
 import Title from './Title'
 import Update_cmpnt from './Update_cmpnt'
 import Navbar from './Navbar'
+import { ThemeProvider } from './ThemeProvider'
 
 function App() {
 
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
-
-  // Set the theme to system theme
-  const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  useEffect(() => {
-    darkModeMediaQuery.matches ? setTheme('dark') : setTheme('light')
-  }, [])
-  darkModeMediaQuery.addListener(e => {
-    darkModeMediaQuery.matches ? setTheme('dark') : setTheme('light')
-  });
-  useEffect(() => {
-    document.documentElement.setAttribute('data-bs-theme', theme)
-    // localStorage only used to avoid FOUC (flash of unstyled content)
-    localStorage.setItem('theme', theme)
-  }, [theme])
-
   return (
-    <div>
-      <Navbar theme={theme} />
+    <ThemeProvider>
+      <Navbar />
       <div className="container">
         <Title />
         <Update_cmpnt
@@ -35,7 +20,7 @@ function App() {
           downloadableContent={"Project proposal - Redacted.pdf"}
         />
       </div>
-    </div>
+    </ThemeProvider>
   )
 }
 
