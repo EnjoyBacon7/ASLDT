@@ -19,7 +19,7 @@ function Update_cmpnt({ title, body, date, downloadableContent}) {
                     {body}
                 </div>
                 <div className="card-footer">
-                    <a className='d-flex align-items-center' href={`./content/${downloadableContent}`}>
+                    <a className='d-flex align-items-center' href={`./content/${downloadableContent}`} download>
                         <img src={download_icon} alt="download" width="30" height="30" />
                         <div>{downloadableContent} </div>   
                     </a>
