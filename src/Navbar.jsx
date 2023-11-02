@@ -3,8 +3,6 @@ import github_light from './assets/github-light.svg'
 
 import { ThemeContext } from './ThemeProvider';
 
-import './Navbar.css'
-
 import React, { useContext } from 'react'
 
 function Navbar() {
@@ -14,8 +12,8 @@ function Navbar() {
 
     return (
 
-        <div className='fixed-top container mt-3 p-3'>
-            <div className={`blurredbackground bg-${theme} z-n1 position-absolute top-0 start-0 w-100 h-100`}></div>
+        <div className='fixed-top container border-bottom p-3'>
+            <div className={`bg-${theme} z-n1 position-absolute top-0 start-0 w-100 h-100`}></div>
             <div className='d-flex justify-content-between align-items-center'>
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb m-0">
