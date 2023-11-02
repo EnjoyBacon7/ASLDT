@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+ASLDataset
+asl_alphabet_train
+archive
