@@ -2,6 +2,8 @@
 ASL Direct Translator is an AI powered python sign language translator.
 it has been designed to translate ASL into text simply and efficiently, requiring no technological or other knowledge to use. Anyone can use it, and thanks to this solution people who are deaf, mute or have a disability that prevents them from communicating well verbally can be understood more easily, without needing to have a translator with them at all times.
 
+Check out the [website](https://enjoybacon7.github.io/ASLDT/) to view our progress!
+
 ## Getting Started
 
 ### Prerequisites
