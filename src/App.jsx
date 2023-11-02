@@ -15,6 +15,19 @@ function App() {
         <Title />
 
         <Update_cmpnt
+          title="ASLDT's first AI"
+          tags={["major update"]}
+          body={[
+            "Quite an achievement today! We have a first AI up and running. It can currently only recognize letters in a particularly good environment, but is quite a promising start nonetheless. It's exhilarating seeing a simple movement of the hand being recognized by a computer. Here is the dataset we used for the training: ",
+            <a href="https://www.kaggle.com/datasets/datamunge/sign-language-mnist">sign-language-mnist</a>,
+            <br />,
+            "Feel free to download the model and try it out for yourself! (Link below)"
+          ]}
+          date="11/02/2023 @ 18:35 PM"
+          downloadableContent={"ASLDT v1.0.zip"}
+        />
+
+        <Update_cmpnt
           title="Introducing TensorFlow!"
           tags={["trivial"]}
           body={[
