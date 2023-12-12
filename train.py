@@ -1,49 +1,92 @@
-import tensorflow as tf
-from tensorflow import keras
-from keras import layers
-import pandas as pd
+import os
+import cv2
+import shutil
+import time
+import json
 
-# Define data paths and vars
-csv_file = './archive/sign_mnist_train.csv'
-image_size = (28, 28)
-batch_size = 256
 
-# Load and preprocess the data from the dataset (CSV format)
-df = pd.read_csv(csv_file)
-labels = df.iloc[:, 0]  # First column is the label
-data = df.iloc[:, 1:].values / 255.0  # Normalize the pixel values
+def vidToFrame(vid_file,out_dir):
 
-# Split the data into training and validation sets
-from sklearn.model_selection import train_test_split
-x_train, x_val, y_train, y_val = train_test_split(data, labels, test_size=0.2, random_state=123)
 
-datagen = tf.keras.preprocessing.image.ImageDataGenerator()
+    video_capture = cv2.VideoCapture(vid_file)
 
-# Create a simple CNN model
-model = keras.Sequential([
-    layers.Reshape(target_shape=(28, 28, 1), input_shape=(28 * 28,)),
-    layers.Conv2D(32, (3, 3), activation='relu'),
-    layers.MaxPooling2D((2, 2)),
-    layers.Conv2D(64, (3, 3), activation='relu'),
-    layers.MaxPooling2D((2, 2)),
-    layers.Flatten(),
-    layers.Dense(128, activation='relu'),
-    layers.Dense(26, activation='softmax')  # Each letter of the alphabet (26 chars)
-])
+    output_folder = out_dir
+    #shutil.rmtree(output_folder)
+    # Create the output folder if it doesn't exist
+    os.makedirs(output_folder, exist_ok=True)
 
-# Create a custom optimizer (for Apple Silicon, as the default one is slower)
-legacy_adam = tf.keras.optimizers.legacy.Adam(learning_rate=0.001)
+    # Initialize frame count and flag
+    vid_cnt = 0
+    success = True
 
-# Compile the model
-model.compile(optimizer=legacy_adam, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-# Train the model
-history = model.fit(
-    x_train, y_train,
-    validation_data=(x_val, y_val),
-    batch_size=batch_size,
-    epochs=10,
-)
 
-# Save the trained model
-model.save('mnist_style_model.h5')
+    # Read the next frame
+    #success, frame = video_capture.read()
+
+    
+    frame_count=0
+    while frame_count < 48:
+        
+        frame_count += 1
+        success, frame = video_capture.read()
+        frame_path = os.path.join(output_folder, f"frame_{frame_count}.jpg")
+
+        if frame is not None:
+            cv2.imwrite(frame_path, frame)
+
+        
+#        cv2.imshow('frame', frame)
+        
+        if cv2.waitKey(20) & 0xFF == ord('q') :
+            break
+
+    # Release the video capture object
+    video_capture.release()
+    cv2.destroyAllWindows()
+
+
+
+
+
+file_path = './WASL/archive/WLASL_v0.3.json'
+missing_file_path = './WASL/archive/missing.txt'
+videos_dir = './WASL/archive/videos/'
+
+# Load the WLASL dataset
+with open(file_path) as file:
+    wlasl = json.load(file)
+
+# Read the missing video IDs from the file
+with open(missing_file_path, 'r') as file:
+    missing_videos = file.read().splitlines()
+
+# Specify the base directory for the dataset
+dataset_dir = './WASL/archive/frames'
+
+# Create necessary directories
+os.makedirs(dataset_dir, exist_ok=True)
+os.makedirs(os.path.join(dataset_dir, 'Train'), exist_ok=True)
+os.makedirs(os.path.join(dataset_dir, 'Test'), exist_ok=True)
+
+# Process each class in the WLASL dataset
+for class_data in wlasl:
+    class_name = class_data['gloss']
+    print(class_name)
+    
+    for instance in class_data['instances']:
+        video_id = instance['video_id']
+        
+        if video_id not in missing_videos:
+            video_file = os.path.join(videos_dir, video_id + '.mp4')
+    
+            if instance['split'] == 'train':
+                train_dir = os.path.join(dataset_dir, 'Train', class_name, video_id)
+                os.makedirs(train_dir, exist_ok=True)
+                vidToFrame(video_file, train_dir)
+                print('train', video_id)
+            else:
+                test_dir = os.path.join(dataset_dir, 'Test', class_name, video_id)
+                os.makedirs(test_dir, exist_ok=True)
+                vidToFrame(video_file, test_dir)
+                print('test', video_id)
