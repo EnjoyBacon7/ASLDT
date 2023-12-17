@@ -15,6 +15,21 @@ function App() {
         <Title />
 
         <Update_cmpnt
+          title="Dataset options"
+          tags={["trivial"]}
+          body={[
+            "Now that ASLDT has had its initial push into existence, it is time to focus on its final knowlege base. That's to say, the database it will be trained on. There are a bunch of these out there, like ",
+            <a href="https://www.kaggle.com/datasets/datamunge/sign-language-mnist">The MNIST Dataset</a>,
+            ", ",
+            <a href="https://how2sign.github.io">The How2Sign Dataset</a>,
+            ", or ",
+            <a href="https://dxli94.github.io/WLASL/">The WLASL Dataset</a>,
+            ". We think we'll stick with How2Sign because of its very extensive word range and thanks to how comprehensive it is although it is quite large, at around 300GB."
+          ]}
+          date="11/5/2023 @ 13:42 PM"
+        />
+        
+        <Update_cmpnt
           title="ASLDT's first AI"
           tags={["major update"]}
           body={[
